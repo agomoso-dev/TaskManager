@@ -1,6 +1,6 @@
 # TaskManager
 
-A simple console-based Task Manager application built in Java. It allows users to create, list, update, and delete tasks with due dates and status management (`pending` or `done`).
+A simple console-based Task Manager application built in Java. It allows users to create, list, update, and delete tasks with due dates and status management.
 
 ---
 
@@ -71,10 +71,8 @@ java -version
 
 * Input validation is implemented for:
 
-  * Task state (`pending` or `done`)
+  * Task state (`pending`, `do` or `done`)
   * Date format (`YYYY-MM-DD`)
-
-* The application currently stores tasks **in memory**, so all data will be lost when the program exits.
 
 ---
 
