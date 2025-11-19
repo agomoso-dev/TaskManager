@@ -1,12 +1,15 @@
 package io.github.agomosodev;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TaskServiceImpl implements TaskService {
 
     private Map<Integer, Task> tasks = new HashMap<>();
     private static int idCounter = 1; // To generate unique IDs
+    private List<String> categories = new ArrayList<>(List.of("Work", "Home", "Study"));
 
 
     @Override
@@ -28,6 +31,7 @@ public class TaskServiceImpl implements TaskService {
                 System.out.println("Title: " + task.getTitle());
                 System.out.println("Description: " + task.getDescription());
                 System.out.println("State: " + task.getState());
+                System.out.println("Category: " + task.getCategory());
                 System.out.println("Due Date: " + task.getDueDate());
                 System.out.println("Completed: " + task.isCompleted());
                 System.out.println("---------------------------");
@@ -74,4 +78,29 @@ public class TaskServiceImpl implements TaskService {
     public void NotExistsMessage(int id) {
         System.out.println("Task with ID " + id + " does not exist.");
     }
+    public List<String> getCategories() {
+        return categories;
+    }
+    public void addCategory(String category) {
+        if (category == null || category.isBlank()) {
+            throw new IllegalArgumentException("Category cannot be empty.");
+        }
+
+        if (categories.contains(category)) {
+            throw new IllegalArgumentException("Category already exists.");
+        }
+
+        categories.add(category);
+    }
+
+    @Override
+    public String categoryExists(String category) {
+        for (String c : categories) {
+            if (c.equalsIgnoreCase(category)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
 }
