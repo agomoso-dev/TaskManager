@@ -19,8 +19,14 @@ public class Task {
     public Task(String title, String description, String state, LocalDate dueDate) {
         this.title = title;
         this.description = description;
-        this.dueDate = dueDate;
         this.completed = false;
+
+        if(!checkdate(dueDate)) {
+            throw new IllegalArgumentException("Due date cannot be in the past.");
+        }
+        this.dueDate = dueDate;
+
+
         if( this.state == null || this.state.isEmpty() || state.equalsIgnoreCase("pending")) {
             this.state = "pending";
         } else if( state.equalsIgnoreCase("do")) {
@@ -68,6 +74,10 @@ public class Task {
         return dueDate;
     }
     public void setDueDate(LocalDate dueDate) {
+        if(!checkdate(dueDate)) {
+            throw new IllegalArgumentException("Due date cannot be in the past.");
+        }
+
         this.dueDate = dueDate;
     }
 
@@ -96,4 +106,8 @@ public class Task {
                         " Completed:" + this.completed + ", toString()=" + super.toString();
     }
     
+    public boolean checkdate(LocalDate today) {
+        return !today.isBefore(LocalDate.now());
+
+    }
 }

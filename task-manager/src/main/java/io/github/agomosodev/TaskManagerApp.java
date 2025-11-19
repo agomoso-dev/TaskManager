@@ -83,7 +83,7 @@ public class TaskManagerApp {
                 case 4:
                     System.out.print("Enter Task ID to delete: ");
                     int deleteId = sc.nextInt();
-                    sc.nextLine(); // Consume newline
+                    sc.nextLine();
                     Task taskToDelete = taskService.getTask(deleteId);
                     taskService.deleteTask(deleteId, taskToDelete);
                     break;
